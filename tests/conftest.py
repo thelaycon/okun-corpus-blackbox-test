@@ -34,8 +34,6 @@ def browser(config):
         elif config["browser"] == "Edge":
             options = selenium.webdriver.EdgeOptions()
             options.add_argument("headless")
-            options.add_argument("allow-insecure-localhost")
-            options.add_argument("no-sandbox")
             BROWSER = selenium.webdriver.Edge(options=options)
         else:
             raise Exception("Set browser to either Chrome or Edge")
@@ -47,7 +45,7 @@ def browser(config):
         else:
             raise Exception("Set browser to either Chrome or Edge")
 
-    BROWSER.implicitly_wait(config["implicitly_wait"])
+    # BROWSER.implicitly_wait(config["implicitly_wait"])
 
     yield BROWSER
 

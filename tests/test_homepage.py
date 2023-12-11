@@ -1,50 +1,50 @@
+import time
 import pytest
 from pages.homepage import Homepage
+from Screenshot import Screenshot
 
 
-def test_homepage_nav(browser):
+screen_obj = Screenshot.Screenshot()
+
+
+def test_homepage(browser):
+
+    # Load page
     homepage = Homepage(browser)
     homepage.load()
-    nav_items = homepage.get_nav_items()
-    browser.save_screenshot("home.png")
-    assert nav_items == ["Home", "Wiki", "Mission", "Portal", "Join"]
+    assert browser.title == "Okun Corpus | OLRC"
 
     # Check for logo in header
+    assert homepage.header_logo().is_displayed()
+    browser.save_screenshot("tests/screenshots/home.png")
+
+    # assert homepage.get_hero_image().is_displayed()
+    browser.save_screenshot("screenshots/hero.png")
+
+    # Check if nav items are displayed
+    nav_items = homepage.get_nav_items()
+    assert nav_items == ["Home", "Wiki", "Mission", "Portal", "Join"]
+    browser.save_screenshot("tests/screenshots/navbar.png")
+    homepage.nav_toggle_close()
 
     # Check for logo in footer
+    browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+    assert homepage.footer_logo().is_displayed()
+    browser.save_screenshot("tests/screenshots/footer.png")
+
+    # Check if hero animation loads
+    browser.execute_script("window.scrollTo(0, 0)")
+    # homepage.wait_for_header()
+    homepage.go_up()
+    time.sleep(5)
+    browser.save_screenshot("tests/screenshots/header.png")
 
     # Check if logo redirects to homepage
+    homepage.header_logo().click()
+    assert browser.current_url == "https://corpus.okunresearch.com.ng/"
 
-
-@pytest.mark.skip()
-def test_homepage_animation(browser):
-    pass
-    # Check if animation loads
-
-
-@pytest.mark.skip()
-def test_navigation_bar(browser):
-    pass
-    # Check if navigation items are visible
-
-
-@pytest.mark.skip()
-def test_features(browser):
-    pass
-    # Check if mission is visible
-
-    # Check if objectives are visible
-
-    # Check if contributors are visible
-
-
-@pytest.mark.skip()
-def test_join_form(browser):
-    pass
-    # Check if form works
-
-
-@pytest.mark.skip()
-def test_footer_contact(browser):
-    pass
-    # Check if footer contains contact
+    # Take full screenshot
+    screen_obj.full_screenshot(
+        browser,
+        save_path=r"tests/screenshots",
+        image_name="fullshot.png")

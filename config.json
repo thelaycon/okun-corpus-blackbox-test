@@ -1,5 +1,5 @@
 {
 	"browser": "Edge",
 	"headless": true,
-	"implicitly_wait": 60
+	"implicitly_wait": 10
 }
