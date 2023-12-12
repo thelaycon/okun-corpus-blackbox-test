@@ -10,3 +10,4 @@ class HomepageLocators:
     FOOTER_LOGO = (By.XPATH, "//*[@id='footer']/div[1]/div/div/div[1]/a/img")
     HERO_IMAGE = (By.XPATH, "/html/body/section/div/div/div[2]/img")
     TO_TOP = (By.XPATH, "/html/body/a/i")
+    FETCH_JSON = (By.XPATH, "//*[@id='hero']/div/div/div[1]/div/div/a")

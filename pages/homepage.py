@@ -54,3 +54,6 @@ class Homepage:
 
     def go_up(self):
         self.browser.find_element(*self.HOMEPAGE.TO_TOP).click()
+
+    def fetch_json(self):
+        self.browser.find_element(*self.HOMEPAGE.FETCH_JSON).click()

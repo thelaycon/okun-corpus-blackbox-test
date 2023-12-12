@@ -1,20 +1,13 @@
 import pytest
+import json
+import requests
 
+ENDPOINT_URL = "https://corpus.okunresearch.com.ng/okun-corpus"
 
-@pytest.mark.skip()
-def test_fetch_button(browser):
-    raise Exception()
-    # Check if fetch button works
+def test_fetch_api():
+    # Check if api works
+    response = requests.get(ENDPOINT_URL)
+    
+    #Confirm success
+    assert response.status_code == 200
 
-
-@pytest.mark.skip()
-def test_download_corpus_button(browser):
-    # Check if download button works
-    raise Exception()
-
-
-@pytest.mark.skip()
-def test_api(browser):
-    # Check if API contains Json
-
-    raise Exception()
